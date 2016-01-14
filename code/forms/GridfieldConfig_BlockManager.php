@@ -70,9 +70,6 @@ class GridFieldConfig_BlockManager extends GridFieldConfig{
 		$this->addComponent($sort = new GridFieldSortableHeader());
 		$this->addComponent($filter = new GridFieldFilterHeader());
 		$this->addComponent(new GridFieldDetailForm());
-		if($controllerClass == 'BlockAdmin' && class_exists('GridFieldCopyButton')){
-			$this->addComponent(new GridFieldCopyButton());
-		}
 
 		$filter->setThrowExceptionOnBadDataType(false);
 		$sort->setThrowExceptionOnBadDataType(false);
@@ -93,8 +90,13 @@ class GridFieldConfig_BlockManager extends GridFieldConfig{
 			$this->addComponent(new GridFieldDeleteAction(true));
 		}
 
-		return $this;		
-		
+		if($controllerClass == 'BlockAdmin' && class_exists('GridFieldCopyButton')){
+			$this->addComponent(new GridFieldCopyButton());
+			$this->addComponent(new GridFieldDeleteAction());
+		}
+
+		return $this;
+
 	}
 
 

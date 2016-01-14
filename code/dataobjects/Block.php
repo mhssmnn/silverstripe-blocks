@@ -154,15 +154,13 @@ class Block extends DataObject implements PermissionProvider{
 
 
 	/**
-	 * @return ValidationResult
+	 * Add custom validation to the form
+	 *
+	 * @access public
+	 * @return RequiredFields
 	 */
-	public function validate() {
-		$result = parent::validate();
-
-		if(!$this->Title){
-			$result->error('Block Title is required');
-		}
-		return $result;
+	public function getCMSValidator() {
+		return new RequiredFields('Title');
 	}
 
 
